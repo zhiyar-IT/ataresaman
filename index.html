@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atare Saman Gaming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+    header {
+      background: rgba(26, 26, 46, 0.95);
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      color: #00fff1;
+      margin: 0;
+    }
+    nav {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    nav button {
+      background: #23234a;
+      color: #00fff1;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav button.active, nav button:hover {
+      background: #00fff1;
+      color: #16213e;
+    }
+    .section {
+      display: none;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .section.active {
+      display: block;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 40vh;
+      background: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(22, 33, 62, 0.7);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .hero-content h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      color: #00fff1;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+      margin-bottom: 2rem;
+    }
+    .games-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .game-card {
+      background: #23234a;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    .game-card img {
+      width: 100%;
+      max-width: 180px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 0.7rem;
+    }
+    .game-card-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      color: #00fff1;
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+    .game-card-desc {
+      font-size: 0.95rem;
+      color: #c0c0c0;
+      text-align: center;
+    }
+    .drinks-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .drink-card {
+      background: #23234a;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+      padding: 1rem 1.5rem;
+      min-width: 120px;
+      text-align: center;
+    }
+    .drink-card-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #00fff1;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .drink-card-price {
+      color: #fff;
+      font-size: 1rem;
+    }
+    /* Management Section Styles (copied from your previous code) */
+    .login-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0;
+    }
+    .login-box {
+      background: #23234a;
+      padding: 2rem 2.5rem;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .login-box input[type="password"] {
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: none;
+      margin-right: 1rem;
+      font-size: 1rem;
+    }
+    .login-box button {
+      background: #00fff1;
+      color: #16213e;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .login-box button:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .tvs-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: none;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .tv-card {
+      background: #23234a;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+      width: 340px;
+      min-width: 300px;
+      padding: 1.5rem 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .tv-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: #00fff1;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .games-list, .drinks-list {
+      margin-bottom: 1rem;
+    }
+    .games-list select, .games-list input, .drinks-list input {
+      margin: 0.2rem 0.5rem 0.2rem 0;
+      padding: 0.3rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+    .games-list button, .drinks-list button {
+      background: #00fff1;
+      color: #16213e;
+      border: none;
+      border-radius: 8px;
+      padding: 0.3rem 1rem;
+      font-size: 0.95rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      margin-top: 0.2rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .games-list button:hover, .drinks-list button:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .games-history {
+      font-size: 0.95rem;
+      color: #b0eaff;
+      margin-bottom: 0.5rem;
+      max-height: 80px;
+      overflow-y: auto;
+    }
+    .drinks-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .drinks-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.2rem;
+    }
+    .total-payment {
+      font-size: 1.1rem;
+      color: #00fff1;
+      font-family: 'Orbitron', sans-serif;
+      margin-top: 0.5rem;
+      text-align: right;
+    }
+    @media (max-width: 900px) {
+      .tvs-section {
+        flex-direction: column;
+        align-items: center;
+      }
+      .tv-card {
+        width: 95vw;
+        min-width: 0;
+      }
+      .games-gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 700px) {
+      header h1 { font-size: 1.3rem; }
+      .tv-title { font-size: 1rem; }
+      .tv-card { padding: 1rem 0.5rem; }
+      .games-gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+    .mgmt-btn {
+      background: #00fff1;
+      color: #16213e;
+      padding: 0.7rem 2rem;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,255,241,0.08);
+    }
+    .mgmt-btn:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .mgmt-btn.danger {
+      background: #ff6b6b;
+      color: #fff;
+    }
+    .mgmt-card {
+      background: #23234a;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      min-width: 320px;
+      max-width: 370px;
+      flex: 1 1 320px;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .mgmt-card:hover {
+      box-shadow: 0 8px 32px rgba(0,255,241,0.13);
+      transform: translateY(-4px) scale(1.01);
+    }
+    .mgmt-card .tv-title {
+      font-size: 1.3rem;
+      color: #00fff1;
+      margin-bottom: 0.2rem;
+      text-align: left;
+      letter-spacing: 1px;
+    }
+    .mgmt-status {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .mgmt-status.running {
+      color: #00ff99;
+    }
+    .mgmt-status.idle {
+      color: #ffeb3b;
+    }
+    .mgmt-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .mgmt-actions button {
+      flex: 1 1 0;
+      min-width: 0;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.5rem;
+      border-radius: 7px;
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      background: #23234a;
+      color: #00fff1;
+      transition: background 0.2s, color 0.2s;
+    }
+    .mgmt-actions button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .mgmt-actions button:hover:not(:disabled) {
+      background: #00fff1;
+      color: #23234a;
+    }
+    .mgmt-history, .mgmt-drinks {
+      background: #181828;
+      border-radius: 8px;
+      padding: 0.6rem 0.7rem;
+      font-size: 0.97rem;
+      margin-bottom: 0.3rem;
+      max-height: 90px;
+      overflow-y: auto;
+    }
+    .mgmt-history b, .mgmt-drinks b {
+      color: #00fff1;
+      font-size: 1.05em;
+    }
+    .mgmt-total {
+      font-size: 1.1rem;
+      color: #00fff1;
+      font-family: 'Orbitron', sans-serif;
+      text-align: right;
+      margin-top: 0.2rem;
+    }
+    .mgmt-inputs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .mgmt-inputs input, .mgmt-inputs select {
+      border-radius: 6px;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      font-size: 1rem;
+      font-family: 'Roboto', Arial, sans-serif;
+      margin-bottom: 0.2rem;
+    }
+    .mgmt-inputs button {
+      background: #00fff1;
+      color: #16213e;
+      border: none;
+      border-radius: 7px;
+      padding: 0.3rem 1rem;
+      font-size: 0.97rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .mgmt-inputs button:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .mgmt-drinks-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.3rem 0 0 0;
+    }
+    .mgmt-drinks-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.2rem;
+      font-size: 0.97rem;
+    }
+    .mgmt-drinks-list button {
+      background: #ff6b6b;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+    .mgmt-drinks-list button:hover {
+      background: #d32f2f;
+    }
+    #finishModal {
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      width:100vw;
+      height:100vh;
+      background:rgba(0,0,0,0.6);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+    }
+    #finishModalContent {
+      background:#23234a;
+      padding:2rem 2.5rem;
+      border-radius:18px;
+      max-width:95vw;
+      max-height:90vh;
+      overflow:auto;
+      color:#fff;
+      box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    }
+    /* New History Section Styles */
+    #historyTable {
+      width: 100%;
+      margin-top: 1.5rem;
+      background: #23234a;
+      color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    #historyTable thead {
+      background: #181828;
+    }
+    #historyTable th, #historyTable td {
+      padding: 8px;
+      text-align: center;
+    }
+    #historyTable tbody tr {
+      border-bottom: 1px solid #181828;
+    }
+    #historyTable tbody tr:last-child {
+      border-bottom: none;
+    }
+    #historyTable ul {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+    #historyTable li {
+      list-style: none;
+    }
+    /* Professional Login Styles */
+    .pro-login-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.6);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .pro-login-modal[style*="flex"] { display: flex !important; }
+
+    .pro-login-box {
+      background: #23234a;
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      border-radius: 22px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      text-align: center;
+      min-width: 320px;
+      max-width: 95vw;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      animation: fadeInLogin 0.5s;
+    }
+    @keyframes fadeInLogin {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: none;}
+    }
+    .login-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin-bottom: 0.7rem;
+      box-shadow: 0 2px 16px #00fff1;
+      background: #181828;
+      object-fit: cover;
+    }
+    .login-title {
+      font-family: 'Orbitron', sans-serif;
+      color: #00fff1;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .login-label {
+      color: #b0eaff;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      display: block;
+      text-align: left;
+      width: 100%;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .login-input {
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.1rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      background: #181828;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,255,241,0.05);
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .login-input:focus {
+      box-shadow: 0 2px 16px #00fff1;
+    }
+    .login-btn {
+      background: linear-gradient(90deg, #00fff1 60%, #00bcd4 100%);
+      color: #16213e;
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem 2.5rem;
+      font-size: 1.1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 16px #00fff1;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .login-btn:hover {
+      background: linear-gradient(90deg, #00bcd4 60%, #00fff1 100%);
+      color: #23234a;
+      box-shadow: 0 4px 24px #00fff1;
+    }
+    .login-error {
+      color: #ff6b6b;
+      margin-top: 0.5rem;
+      min-height: 1.2em;
+      font-size: 1rem;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    @media (max-width: 500px) {
+      .pro-login-box { min-width: 90vw; padding: 1.5rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Atare Saman Gaming</h1>
+    <nav>
+      <button id="homeBtn" class="active" onclick="showSection('home')">Home</button>
+      <button id="drinksBtn" onclick="showSection('drinks')">Drinks & Cakes</button>
+      <button id="managementBtn" onclick="showSection('management')">Management</button>
+      <button id="historyBtn" onclick="showSection('history')">History</button>
+    </nav>
+  </header>
+  <!-- Home Section -->
+  <section class="section active" id="homeSection">
+    <div class="hero">
+      <div class="hero-content">
+        <h2>Welcome to Atare Saman Gaming</h2>
+        <p>Enjoy FIFA, PES, and Call of Duty on 12 TVs. Order drinks and cakes while you play!</p>
+        <div style="display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-top:2.5rem;">
+          <div style="background:rgba(0,255,241,0.13);border-radius:18px;padding:1.5rem 2rem;box-shadow:0 2px 16px #00fff1;min-width:220px;max-width:260px;display:flex;flex-direction:column;align-items:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Game Controller" style="width:70px;margin-bottom:1rem;">
+            <div style="font-family:'Orbitron',sans-serif;color:#00fff1;font-size:1.2rem;">Play Together</div>
+            <div style="color:#b0eaff;margin-top:0.5rem;text-align:center;">Multiplayer fun for friends and family on big screens.</div>
+          </div>
+          <div style="background:rgba(255,235,59,0.13);border-radius:18px;padding:1.5rem 2rem;box-shadow:0 2px 16px #ffeb3b;min-width:220px;max-width:260px;display:flex;flex-direction:column;align-items:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Trophy" style="width:70px;margin-bottom:1rem;">
+            <div style="font-family:'Orbitron',sans-serif;color:#ffeb3b;font-size:1.2rem;">Tournaments</div>
+            <div style="color:#fffde7;margin-top:0.5rem;text-align:center;">Join competitions and win prizes every week.</div>
+          </div>
+          <div style="background:rgba(255,107,107,0.13);border-radius:18px;padding:1.5rem 2rem;box-shadow:0 2px 16px #ff6b6b;min-width:220px;max-width:260px;display:flex;flex-direction:column;align-items:center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/3523/3523887.png" alt="Headset" style="width:70px;margin-bottom:1rem;">
+            <div style="font-family:'Orbitron',sans-serif;color:#ff6b6b;font-size:1.2rem;">Pro Equipment</div>
+            <div style="color:#ffcdd2;margin-top:0.5rem;text-align:center;">High-quality controllers, headsets, and fast internet.</div>
+          </div>
+        </div>
+        <div style="margin-top:2.5rem;">
+          <a href="#drinksSection" onclick="showSection('drinks')" style="background:#00fff1;color:#16213e;padding:1rem 2.5rem;border-radius:12px;font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:bold;text-decoration:none;box-shadow:0 2px 16px #00fff1;transition:background 0.2s;">See Drinks & Cakes</a>
+        </div>
+      </div>
+    </div>
+    <h3 style="font-family:'Orbitron',sans-serif;color:#00fff1;text-align:center;">Our Games</h3>
+    <div class="games-gallery" id="gamesGallery"></div>
+  </section>
+  <!-- Drinks Section -->
+  <section class="section" id="drinksSection">
+    <h3 style="font-family:'Orbitron',sans-serif;color:#00fff1;text-align:center;">Drinks & Cakes Menu</h3>
+    <div class="drinks-gallery" id="drinksGallery"></div>
+  </section>
+  <!-- Management Section -->
+  <section class="section" id="managementSection">
+    <!-- Management Login Section -->
+    <div class="login-section" id="loginSection">
+      <div class="login-box pro-login-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/3523/3523887.png" alt="Admin" class="login-avatar">
+        <h2 class="login-title">Admin Login</h2>
+        <label for="adminPass" class="login-label">Admin Password</label>
+        <input type="password" id="adminPass" class="login-input" placeholder="Enter password" autocomplete="current-password" />
+        <button onclick="login()" class="login-btn">Login</button>
+        <div id="loginError" class="login-error"></div>
+      </div>
+    </div>
+    <div class="tvs-section" id="tvsSection" style="flex-wrap:wrap;gap:2rem;justify-content:center;"></div>
+    <div id="summarySection" style="display:none;max-width:1200px;margin:2rem auto 1rem auto;padding:1.5rem 2rem;background:#181828;border-radius:18px;box-shadow:0 2px 24px rgba(0,0,0,0.25);color:#fff;">
+      <h3 style="font-family:'Orbitron',sans-serif;color:#00fff1;font-size:2rem;margin-bottom:1rem;">Management Dashboard</h3>
+      <div id="summaryContent" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;"></div>
+      <div style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:1rem;">
+        <button onclick="resetAllTVs()" class="mgmt-btn danger">Reset All TVs</button>
+        <button onclick="exportData()" class="mgmt-btn">Export Data</button>
+        <button onclick="importDataPrompt()" class="mgmt-btn">Import Data</button>
+        <button onclick="printSummary()" class="mgmt-btn">Print Summary</button>
+      </div>
+    </div>
+    <div id="mgmtFeatureBtns" style="display:none;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:2rem 0;">
+      <button id="showEditPricesBtn" class="mgmt-btn" onclick="showMgmtBox('editPricesBox')">Manage Games & Drinks</button>
+      <button id="showEarningsReportBtn" class="mgmt-btn" onclick="showMgmtBox('earningsReportBox')">Earnings Report</button>
+      <button id="showChangePassBtn" class="mgmt-btn" onclick="showMgmtBox('changePassBox')">Change Password</button>
+    </div>
+    <!-- Feature boxes will be shown/hidden here based on selection -->
+    <div id="changePassBox" style="background:#23234a;padding:1.5rem 2rem;border-radius:18px;max-width:400px;margin:2rem auto 0 auto;box-shadow:0 2px 16px rgba(0,255,241,0.08);display:none;">
+      <h3 style="font-family:'Orbitron',sans-serif;color:#00fff1;margin-bottom:1rem;">Change Admin Password</h3>
+      <label for="oldPass" style="color:#b0eaff;display:block;text-align:left;margin-bottom:0.3rem;">Current Password</label>
+      <input type="password" id="oldPass" class="login-input" placeholder="Current password" style="margin-bottom:0.7rem;">
+      <label for="newPass" style="color:#b0eaff;display:block;text-align:left;margin-bottom:0.3rem;">New Password</label>
+      <input type="password" id="newPass" class="login-input" placeholder="New password" style="margin-bottom:0.7rem;">
+      <label for="confirmPass" style="color:#b0eaff;display:block;text-align:left;margin-bottom:0.3rem;">Confirm New Password</label>
+      <input type="password" id="confirmPass" class="login-input" placeholder="Confirm new password" style="margin-bottom:1rem;">
+      <button onclick="changeAdminPassword()" class="login-btn" style="width:100%;">Change Password</button>
+      <div id="changePassMsg" class="login-error" style="margin-top:0.7rem;"></div>
+    </div>
+    <div id="editPricesBox" style="display:none;background:#23234a;padding:1.5rem 2rem;border-radius:18px;max-width:700px;margin:2rem auto 0 auto;box-shadow:0 2px 16px rgba(0,255,241,0.08);">
+      <h3 style="font-family:'Orbitron',sans-serif;color:#00fff1;margin-bottom:1rem;">Manage Games & Drinks</h3>
+      <div style="margin-bottom:1.2rem;">
+        <b style="color:#00fff1;">Games</b>
+        <table style="width:100%;margin-top:0.5rem;">
+          <thead>
+            <tr style="color:#b0eaff;">
+              <th style="text-align:left;">Game</th>
+              <th style="text-align:left;">Type</th>
+              <th style="text-align:left;">Price per 8 min / 1 hour (COD)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="editGamesPrices"></tbody>
+          <tfoot>
+            <tr>
+              <td><input id="newGameName" placeholder="New game name" style="width:120px;padding:0.3rem;border-radius:6px;border:none;"></td>
+              <td>
+                <select id="newGameType" style="padding:0.3rem;border-radius:6px;border:none;">
+                  <option value="fifa">FIFA</option>
+                  <option value="pes">PES</option>
+                  <option value="cod">COD</option>
+                </select>
+              </td>
+              <td>
+                <input id="newGamePrice" type="number" min="0" placeholder="Price" style="width:90px;padding:0.3rem;border-radius:6px;border:none;">
+                <span style="font-size:0.9em;color:#888;">per 8min/1hr</span>
+              </td>
+              <td>
+                <button onclick="addGame()" style="background:#00fff1;color:#16213e;padding:0.2rem 1rem;border-radius:7px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Add</button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div>
+        <b style="color:#00fff1;">Drinks & Cakes</b>
+        <table style="width:100%;margin-top:0.5rem;">
+          <thead>
+            <tr style="color:#b0eaff;">
+              <th style="text-align:left;">Name</th>
+              <th style="text-align:left;">Price (IQD)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="editDrinksPrices"></tbody>
+          <tfoot>
+            <tr>
+              <td><input id="newDrinkName" placeholder="New drink/cake" style="width:120px;padding:0.3rem;border-radius:6px;border:none;"></td>
+              <td><input id="newDrinkPrice" type="number" min="0" placeholder="Price" style="width:90px;padding:0.3rem;border-radius:6px;border:none;"></td>
+              <td>
+                <button onclick="addDrinkItem()" style="background:#00fff1;color:#16213e;padding:0.2rem 1rem;border-radius:7px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Add</button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div id="earningsReportBox" style="background:#23234a;padding:1.5rem 2rem;border-radius:18px;max-width:700px;margin:2rem auto 0 auto;box-shadow:0 2px 16px rgba(0,255,241,0.08);display:none;">
+      <h3 style="font-family:'Orbitron',sans-serif;color:#00fff1;margin-bottom:1rem;">Earnings Report</h3>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem;">
+        <label for="reportType" style="color:#b0eaff;">View by:</label>
+        <select id="reportType" style="padding:0.4rem 1rem;border-radius:8px;border:none;">
+          <option value="day">Day</option>
+          <option value="week">Week</option>
+          <option value="month">Month</option>
+          <option value="all">All Time</option>
+        </select>
+        <input type="date" id="reportDate" style="padding:0.4rem 1rem;border-radius:8px;border:none;">
+        <button onclick="renderEarningsReport()" style="background:#00fff1;color:#23234a;padding:0.5rem 1.5rem;border-radius:8px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Show</button>
+        <button onclick="exportEarningsReport()" style="background:#00ff99;color:#23234a;padding:0.5rem 1.5rem;border-radius:8px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Export</button>
+      </div>
+      <div id="earningsReportTableWrap" style="overflow-x:auto;">
+        <table id="earningsReportTable" style="width:100%;background:#23234a;color:#fff;border-radius:12px;overflow:hidden;">
+          <thead style="background:#181828;">
+            <tr>
+              <th>Date</th>
+              <th>TV</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Total (IQD)</th>
+            </tr>
+          </thead>
+          <tbody id="earningsReportBody"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" style="text-align:right;color:#00fff1;font-weight:bold;">Total</td>
+              <td id="earningsReportTotal" style="color:#00ff99;font-weight:bold;"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- History Section -->
+  <section class="section" id="historySection">
+    <h3 style="font-family:'Orbitron',sans-serif;color:#00fff1;text-align:center;">Finished Sessions & Bills History</h3>
+    <div id="historyTableWrap" style="overflow-x:auto;">
+      <table id="historyTable">
+        <thead>
+          <tr>
+            <th>TV</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Games</th>
+            <th>Drinks/Cakes</th>
+            <th>Total (IQD)</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="historyTableBody"></tbody>
+      </table>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button onclick="clearHistory()" style="background:#ff6b6b;color:#fff;padding:0.7rem 2rem;border-radius:8px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Clear All History</button>
+      <button onclick="exportHistory()" style="background:#00fff1;color:#23234a;padding:0.7rem 2rem;border-radius:8px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;margin-left:1rem;">Export History</button>
+      <button onclick="downloadHistoryPDF()" style="background:#00ff99;color:#23234a;padding:0.7rem 2rem;border-radius:8px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;margin-left:1rem;">Download PDF Report</button>
+    </div>
+  </section>
+  <div id="finishModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+    <div id="finishModalContent" style="background:#23234a;padding:2rem 2.5rem;border-radius:18px;max-width:95vw;max-height:90vh;overflow:auto;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+      <!-- Content will be filled by JS -->
+    </div>
+  </div>
+  <!-- Add a login modal for history access, just before </body> -->
+  <div id="historyLoginModal" class="pro-login-modal">
+    <div class="pro-login-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/3523/3523887.png" alt="History" class="login-avatar">
+      <h2 class="login-title">History Login</h2>
+      <label for="historyPass" class="login-label">History Password</label>
+      <input type="password" id="historyPass" class="login-input" placeholder="Enter password" autocomplete="current-password">
+      <button onclick="loginHistory()" class="login-btn">Login</button>
+      <div id="historyLoginError" class="login-error"></div>
+    </div>
+  </div>
+  <script>
+    // --- Configuration ---
+    const ADMIN_PASS = "saman123";
+    const TV_COUNT = 12;
+    const GAMES = [
+      { name: "FIFA 2020", type: "fifa", img: "https://cdn.mobygames.com/covers/10149538-fifa-20-playstation-4-front-cover.jpg", desc: "Football fun for everyone." },
+      { name: "FIFA 2021", type: "fifa", img: "https://cdn.mobygames.com/covers/10149539-fifa-21-playstation-4-front-cover.jpg", desc: "Football fun for everyone." },
+      { name: "FIFA 2022", type: "fifa", img: "https://cdn.mobygames.com/covers/10149540-fifa-22-playstation-4-front-cover.jpg", desc: "Football fun for everyone." },
+      { name: "FIFA 2023", type: "fifa", img: "https://cdn.mobygames.com/covers/10149541-fifa-23-playstation-4-front-cover.jpg", desc: "Football fun for everyone." },
+      { name: "FIFA 2024", type: "fifa", img: "https://cdn.mobygames.com/covers/10149542-fifa-24-playstation-4-front-cover.jpg", desc: "Football fun for everyone." },
+      { name: "FIFA 2025", type: "fifa", img: "https://cdn.mobygames.com/covers/10149543-fifa-25-playstation-4-front-cover.jpg", desc: "Football fun for everyone." },
+      { name: "PES 2018", type: "pes", img: "https://cdn.mobygames.com/covers/10149544-pes-2018-playstation-4-front-cover.jpg", desc: "Pro Evolution Soccer classic." },
+      { name: "PES 2019", type: "pes", img: "https://cdn.mobygames.com/covers/10149545-pes-2019-playstation-4-front-cover.jpg", desc: "Pro Evolution Soccer classic." },
+      { name: "PES 2020", type: "pes", img: "https://cdn.mobygames.com/covers/10149546-pes-2020-playstation-4-front-cover.jpg", desc: "Pro Evolution Soccer classic." },
+      { name: "PES 2021", type: "pes", img: "https://cdn.mobygames.com/covers/10149547-pes-2021-playstation-4-front-cover.jpg", desc: "Pro Evolution Soccer classic." },
+      { name: "Call of Duty Warzone", type: "cod", img: "https://upload.wikimedia.org/wikipedia/en/3/3a/Call_of_Duty_Warzone_cover_art.jpg", desc: "Battle royale action." },
+      { name: "Call of Duty Cold War", type: "cod", img: "https://upload.wikimedia.org/wikipedia/en/9/9c/Call_of_Duty_Black_Ops_Cold_War.jpg", desc: "Cold War era shooter." }
+    ];
+    const DRINKS = [
+      { name: "Cola", price: 500 },
+      { name: "Orange Juice", price: 750 },
+      { name: "Water", price: 250 },
+      { name: "Cake", price: 1000 },
+      { name: "Chocolate Cake", price: 1500 }
+    ];
+    // --- State ---
+    let tvs = [];
+    let isLoggedIn = false;
+    let isHistoryLoggedIn = false;
+    // --- Local Storage ---
+    function saveTVs() {
+      localStorage.setItem("atare_saman_tvs", JSON.stringify(tvs));
+    }
+    function loadTVs() {
+      const data = localStorage.getItem("atare_saman_tvs");
+      if (data) {
+        tvs = JSON.parse(data);
+      } else {
+        tvs = Array.from({length: TV_COUNT}, (_,i) => ({
+          id: i+1,
+          games: [],
+          drinks: [],
+          total: 0
+        }));
+      }
+    }
+    // --- Navigation ---
+    function showSection(section) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(section + 'Section').classList.add('active');
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById(section + 'Btn').classList.add('active');
+      if(section === 'management') {
+        if(isLoggedIn) {
+          document.getElementById("loginSection").style.display = "none";
+          document.getElementById("tvsSection").style.display = "flex";
+          document.getElementById("editPricesBox").style.display = "block";
+          document.getElementById("earningsReportBox").style.display = "block";
+          renderTVs();
+          renderEditPrices();
+          // Set default date to today if not set
+          if (!document.getElementById("reportDate").value)
+            document.getElementById("reportDate").value = new Date().toISOString().slice(0,10);
+          renderEarningsReport();
+        } else {
+          document.getElementById("loginSection").style.display = "flex";
+          document.getElementById("tvsSection").style.display = "none";
+          document.getElementById("editPricesBox").style.display = "none";
+          document.getElementById("earningsReportBox").style.display = "none";
+        }
+      }
+      if(section === 'history') {
+        if(!isHistoryLoggedIn) {
+          document.getElementById("historyLoginModal").style.display = "flex";
+          document.getElementById("historyPass").value = "";
+          document.getElementById("historyLoginError").innerText = "";
+          document.getElementById(section + 'Section').classList.remove('active');
+        } else {
+          renderHistory();
+        }
+      }
+    }
+    // --- Home Games Gallery ---
+    function renderGamesGallery() {
+      const gallery = document.getElementById("gamesGallery");
+      gallery.innerHTML = GAMES.map(g => `
+        <div class="game-card">
+          <img src="${g.img}" alt="${g.name}">
+          <div class="game-card-title">${g.name}</div>
+          <div class="game-card-desc">${g.desc}</div>
+        </div>
+      `).join("");
+    }
+    // --- Drinks Gallery ---
+    function renderDrinksGallery() {
+      const gallery = document.getElementById("drinksGallery");
+      gallery.innerHTML = DRINKS.map(d => `
+        <div class="drink-card">
+          <div class="drink-card-title">${d.name}</div>
+          <div class="drink-card-price">${d.price} IQD</div>
+        </div>
+      `).join("");
+    }
+    // --- Password Storage & Change Logic ---
+    function getAdminPass() {
+      return localStorage.getItem("atare_saman_admin_pass") || ADMIN_PASS;
+    }
+    function setAdminPass(newPass) {
+      localStorage.setItem("atare_saman_admin_pass", newPass);
+    }
+
+    // Update login functions to use getAdminPass()
+function login() {
+  const pass = document.getElementById("adminPass").value;
+  if (pass === getAdminPass()) {
+    isLoggedIn = true;
+    showSection('management'); // This will handle all UI logic, including showing the buttons
+    renderTVs();
+    renderEditPrices();
+  } else {
+    document.getElementById("loginError").innerText = "Incorrect password!";
+  }
+}
+    function loginHistory() {
+      const pass = document.getElementById("historyPass").value;
+      if (pass === getAdminPass()) {
+        isHistoryLoggedIn = true;
+        document.getElementById("historyLoginModal").style.display = "none";
+        document.getElementById("historySection").classList.add('active');
+        renderHistory();
+      } else {
+        document.getElementById("historyLoginError").innerText = "Incorrect password!";
+      }
+    }
+
+    // Change password function
+    function changeAdminPassword() {
+      const oldPass = document.getElementById("oldPass").value;
+      const newPass = document.getElementById("newPass").value;
+      const confirmPass = document.getElementById("confirmPass").value;
+      const msg = document.getElementById("changePassMsg");
+      msg.innerText = "";
+
+      if (oldPass !== getAdminPass()) {
+        msg.innerText = "Current password is incorrect!";
+        return;
+      }
+      if (newPass.length < 4) {
+        msg.innerText = "New password must be at least 4 characters.";
+        return;
+      }
+      if (newPass !== confirmPass) {
+        msg.innerText = "New passwords do not match!";
+        return;
+      }
+      setAdminPass(newPass);
+      msg.style.color = "#00ff99";
+      msg.innerText = "Password changed successfully!";
+      setTimeout(() => {
+        msg.innerText = "";
+        msg.style.color = "#ff6b6b";
+        document.getElementById("oldPass").value = "";
+        document.getElementById("newPass").value = "";
+        document.getElementById("confirmPass").value = "";
+      }, 2000);
+    }
+    // --- Render TVs ---
+    function renderTVs() {
+      loadTVs();
+      const tvsSection = document.getElementById("tvsSection");
+      tvsSection.innerHTML = "";
+      const games = getGames();
+      const drinks = getDrinks();
+      tvs.forEach((tv, idx) => {
+        const runningGame = tv.games.find(g => !g.end);
+        const card = document.createElement("div");
+        card.className = "mgmt-card";
+        card.innerHTML = `
+          <div class="tv-title">TV ${tv.id}</div>
+          <div class="mgmt-status ${runningGame ? "running" : "idle"}">
+            ${runningGame ? "🟢 Running: " + runningGame.name : "⚪ Idle"}
+          </div>
+          <div class="mgmt-actions">
+            <button onclick="resetTV(${tv.id})" title="Reset TV">Reset</button>
+            <button onclick="copyTVSummary(${tv.id})" title="Copy TV Summary">Copy</button>
+            <button onclick="showFinishModal(${tv.id})" title="Finish & Bill" style="background:#00ff99;color:#23234a;">Finish</button>
+          </div>
+          <div class="mgmt-inputs">
+            <select id="gameSelect${tv.id}">
+              ${games.map(g => `<option value="${g.name}">${g.name}</option>`).join("")}
+            </select>
+            <select id="durationSelect${tv.id}">
+              <option value="5">5 min</option>
+              <option value="8">8 min</option>
+              <option value="10">10 min</option>
+              <option value="15">15 min</option>
+              <option value="20">20 min</option>
+              <option value="25">25 min</option>
+              <option value="60">1 hour (COD only)</option>
+            </select>
+            <button onclick="startGame(${tv.id})" ${runningGame ? "disabled" : ""}>Start</button>
+            <button onclick="endGame(${tv.id})" ${!runningGame ? "disabled" : ""}>End</button>
+          </div>
+          <div class="mgmt-history">
+            <b>Games:</b>
+            ${tv.games.length === 0 ? "<div style='color:#888;'>No games yet.</div>" : tv.games.map(g =>
+              `<div>${g.name} | ${g.start} - ${g.end ? g.end : "<span style='color:#ffeb3b'>Running</span>"} | ${g.duration} min | <b>${g.price} IQD</b></div>`
+            ).join("")}
+          </div>
+          <div class="mgmt-inputs">
+            <input type="text" id="drinkName${tv.id}" placeholder="Drink/Cake name" list="drinksList${tv.id}" />
+            <datalist id="drinksList${tv.id}">
+              ${drinks.map(d => `<option value="${d.name}">`).join("")}
+            </datalist>
+            <input type="number" id="drinkPrice${tv.id}" placeholder="Price" min="0" style="width:80px;" />
+            <button onclick="addDrink(${tv.id})">Add</button>
+          </div>
+          <div class="mgmt-drinks">
+            <b>Drinks/Cakes:</b>
+            <ul class="mgmt-drinks-list">
+              ${tv.drinks.length === 0 ? "<li style='color:#888;'>No drinks/cakes yet.</li>" : tv.drinks.map((d,i) =>
+                `<li>${d.name} - ${d.price} IQD <button onclick="removeDrink(${tv.id},${i})">x</button></li>`
+              ).join("")}
+            </ul>
+          </div>
+          <div class="mgmt-total">
+            <b>Total:</b> <span>${tv.total} IQD</span>
+          </div>
+        `;
+        tvsSection.appendChild(card);
+      });
+      renderSummary();
+    }
+    // --- Game Logic ---
+    function startGame(tvId) {
+      loadTVs();
+      const tv = tvs.find(t => t.id === tvId);
+      const games = getGames();
+      const gameName = document.getElementById(`gameSelect${tv.id}`).value;
+      const duration = parseInt(document.getElementById(`durationSelect${tv.id}`).value, 10);
+      const game = games.find(g => g.name === gameName);
+      if (!game) {
+        alert("Game not found!");
+        return;
+      }
+      if ((game.type === "cod" && duration !== 60) || ((game.type === "fifa" || game.type === "pes") && (duration < 5 || duration > 25))) {
+        alert("Invalid duration for selected game!");
+        return;
+      }
+      if (tv.games.some(g => !g.end)) {
+        alert("A game is already running on this TV!");
+        return;
+      }
+      const now = new Date();
+      const start = now.getHours().toString().padStart(2,"0") + ":" + now.getMinutes().toString().padStart(2,"0");
+      let price = getGamePrice(game, duration);
+      tv.games.push({
+        name: gameName,
+        start,
+        end: null,
+        duration,
+        price
+      });
+      tv.total += price;
+      saveTVs();
+      renderTVs();
+    }
+    function endGame(tvId) {
+      loadTVs();
+      const tv = tvs.find(t => t.id === tvId);
+      const running = tv.games.find(g => !g.end);
+      if (!running) {
+        alert("No running game to end!");
+        return;
+      }
+      const now = new Date();
+      running.end = now.getHours().toString().padStart(2,"0") + ":" + now.getMinutes().toString().padStart(2,"0");
+      saveTVs();
+      renderTVs();
+    }
+    // --- Drinks/Cakes Logic ---
+    function addDrink(tvId) {
+      loadTVs();
+      const tv = tvs.find(t => t.id === tvId);
+      const drinks = getDrinks();
+      const name = document.getElementById(`drinkName${tv.id}`).value.trim();
+      let price = parseInt(document.getElementById(`drinkPrice${tv.id}`).value, 10);
+      if (!name) return;
+      if (!price || price < 0) {
+        price = getDrinkPrice(name);
+      }
+      if (price <= 0) {
+        alert("Invalid price!");
+        return;
+      }
+      tv.drinks.push({ name, price });
+      tv.total += price;
+      saveTVs();
+      renderTVs();
+    }
+    function removeDrink(tvId, idx) {
+      loadTVs();
+      const tv = tvs.find(t => t.id === tvId);
+      if (tv.drinks[idx]) {
+        tv.total -= tv.drinks[idx].price;
+        tv.drinks.splice(idx, 1);
+        saveTVs();
+        renderTVs();
+      }
+    }
+    // --- Reset TV ---
+    function resetTV(tvId) {
+      if (!confirm("Are you sure you want to reset this TV?")) return;
+      loadTVs();
+      const tv = tvs.find(t => t.id === tvId);
+      tv.games = [];
+      tv.drinks = [];
+      tv.total = 0;
+      saveTVs();
+      renderTVs();
+    }
+    // --- Improved Management Features ---
+    function renderSummary() {
+      if (!isLoggedIn) {
+        document.getElementById("summarySection").style.display = "none";
+        return;
+      }
+      let total = 0, runningGames = 0, totalDrinks = 0, totalGames = 0;
+      let drinksMap = {}, gamesMap = {};
+      tvs.forEach(tv => {
+        total += tv.total;
+        runningGames += tv.games.filter(g => !g.end).length;
+        totalGames += tv.games.length;
+        tv.drinks.forEach(d => {
+          drinksMap[d.name] = (drinksMap[d.name] || 0) + 1;
+          totalDrinks++;
+        });
+        tv.games.forEach(g => {
+          gamesMap[g.name] = (gamesMap[g.name] || 0) + 1;
+        });
+      });
+      let drinksList = Object.entries(drinksMap).map(([k,v]) => `<span style="background:#00bcd4;color:#fff;padding:2px 8px;border-radius:8px;margin:2px;display:inline-block;">${k}: ${v}</span>`).join(" ") || "None";
+      let gamesList = Object.entries(gamesMap).map(([k,v]) => `<span style="background:#00fff1;color:#23234a;padding:2px 8px;border-radius:8px;margin:2px;display:inline-block;">${k}: ${v}</span>`).join(" ") || "None";
+      document.getElementById("summaryContent").innerHTML = `
+        <div>
+          <div style="font-size:1.2em;"><b>Total TVs:</b> ${tvs.length}</div>
+          <div style="margin:6px 0;"><b>Total Games Played:</b> ${totalGames}</div>
+          <div style="margin:6px 0;"><b>Games Breakdown:</b> ${gamesList}</div>
+        </div>
+        <div>
+          <div style="font-size:1.2em;"><b>Running Games:</b> <span style="color:#ffeb3b">${runningGames}</span></div>
+          <div style="margin:6px 0;"><b>Total Drinks/Cakes Sold:</b> ${totalDrinks}</div>
+          <div style="margin:6px 0;"><b>Drinks/Cakes Breakdown:</b> ${drinksList}</div>
+        </div>
+        <div>
+          <div style="font-size:1.3em;margin-top:0.5em;"><b>Total Payment:</b> <span style="color:#00fff1;font-size:1.2em;">${total} IQD</span></div>
+        </div>
+      `;
+      document.getElementById("summarySection").style.display = "block";
+    }
+    // Reset all TVs at once
+    function resetAllTVs() {
+      if (!confirm("Are you sure you want to reset ALL TVs? This cannot be undone.")) return;
+      loadTVs();
+      tvs.forEach(tv => {
+        tv.games = [];
+        tv.drinks = [];
+        tv.total = 0;
+      });
+      saveTVs();
+      renderTVs();
+      renderSummary();
+    }
+    // Export data as JSON for backup/reporting
+    function exportData() {
+      loadTVs();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(tvs, null, 2));
+      const dlAnchor = document.createElement('a');
+      dlAnchor.setAttribute("href", dataStr);
+      dlAnchor.setAttribute("download", "atare_saman_tvs_data.json");
+      document.body.appendChild(dlAnchor);
+      dlAnchor.click();
+      dlAnchor.remove();
+    }
+    // Import data from JSON
+    function importDataPrompt() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json,application/json';
+      input.onchange = e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          try {
+            const imported = JSON.parse(evt.target.result);
+            if (Array.isArray(imported) && imported.length === TV_COUNT) {
+              tvs = imported;
+              saveTVs();
+              renderTVs();
+              renderSummary();
+              alert("Data imported successfully!");
+            } else {
+              alert("Invalid data file.");
+            }
+          } catch {
+            alert("Failed to import data.");
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+    // Print summary (opens print dialog with summary only)
+    function printSummary() {
+      let printWindow = window.open('', '', 'width=800,height=600');
+      printWindow.document.write(`
+        <html>
+        <head>
+          <title>Atare Saman - Management Summary</title>
+          <style>
+            body { font-family: 'Roboto', Arial, sans-serif; background: #fff; color: #23234a; padding: 2rem; }
+            h2 { color: #00fff1; font-family: 'Orbitron', sans-serif; }
+            .badge { background:#00bcd4;color:#fff;padding:2px 8px;border-radius:8px;margin:2px;display:inline-block; }
+            .badge2 { background:#00fff1;color:#23234a;padding:2px 8px;border-radius:8px;margin:2px;display:inline-block; }
+          </style>
+        </head>
+        <body>
+          <h2>Atare Saman - Management Summary</h2>
+          ${document.getElementById("summaryContent").innerHTML}
+          <hr>
+          <div style="margin-top:2rem;font-size:0.9em;color:#888;">Printed at: ${new Date().toLocaleString()}</div>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
+    }
+    function showFinishModal(tvId) {
+      loadTVs();
+      const tv = tvs.find(t => t.id === tvId);
+      let gamesList = tv.games.map((g,i) =>
+        `<li>${g.name} | ${g.start} - ${g.end ? g.end : "Running"} | ${g.duration} min | <b>${g.price} IQD</b></li>`
+      ).join("") || "<li style='color:#888;'>No games played.</li>";
+      let drinksList = tv.drinks.map((d,i) =>
+        `<li>${d.name} - ${d.price} IQD</li>`
+      ).join("") || "<li style='color:#888;'>No drinks/cakes.</li>";
+      let total = tv.total;
+      let firstGame = tv.games[0];
+      let lastGame = tv.games[tv.games.length-1];
+      let fromTime = firstGame ? firstGame.start : "-";
+      let toTime = lastGame && lastGame.end ? lastGame.end : "-";
+      document.getElementById("finishModalContent").innerHTML = `
+        <h2 style="color:#00fff1;font-family:'Orbitron',sans-serif;">TV ${tv.id} Bill</h2>
+        <div><b>From:</b> ${fromTime} <b>To:</b> ${toTime}</div>
+        <div style="margin-top:1rem;"><b>Games Played:</b><ul>${gamesList}</ul></div>
+        <div style="margin-top:1rem;"><b>Drinks/Cakes Ordered:</b><ul>${drinksList}</ul></div>
+        <div style="margin-top:1.5rem;font-size:1.2em;"><b>Total:</b> <span style="color:#00fff1;">${total} IQD</span></div>
+        <div style="margin-top:2rem;display:flex;gap:1rem;">
+          <button onclick="saveBill(${tv.id})" style="background:#00fff1;color:#23234a;padding:0.7rem 2rem;border-radius:8px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Bill & Save</button>
+          <button onclick="closeFinishModal()" style="background:#ff6b6b;color:#fff;padding:0.7rem 2rem;border-radius:8px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Close</button>
+        </div>
+      `;
+      document.getElementById("finishModal").style.display = "flex";
+    }
+    function closeFinishModal() {
+      document.getElementById("finishModal").style.display = "none";
+    }
+    function saveBill(tvId) {
+      loadTVs();
+      const tv = tvs.find(t => t.id === tvId);
+      let firstGame = tv.games[0];
+      let lastGame = tv.games[tv.games.length-1];
+      let fromTime = firstGame ? firstGame.start : "-";
+      let toTime = lastGame && lastGame.end ? lastGame.end : "-";
+      let bill = {
+        tv: tvId,
+        from: fromTime,
+        to: toTime,
+        total: tv.total,
+        games: tv.games,
+        drinks: tv.drinks,
+        date: new Date().toLocaleString()
+      };
+      let bills = JSON.parse(localStorage.getItem("atare_saman_bills") || "[]");
+      bills.push(bill);
+      localStorage.setItem("atare_saman_bills", JSON.stringify(bills));
+      alert(`Bill saved for TV ${tvId}!`);
+      closeFinishModal();
+      resetTV(tvId);
+    }
+    // --- Render History Table ---
+    function renderHistory() {
+      const bills = JSON.parse(localStorage.getItem("atare_saman_bills") || "[]");
+      const tbody = document.getElementById("historyTableBody");
+      if (!bills.length) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#bbb;padding:2rem;">No finished sessions yet.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = bills.map((bill, idx) => `
+        <tr style="border-bottom:1px solid #181828;">
+          <td style="padding:8px;text-align:center;">${bill.tv}</td>
+          <td style="padding:8px;text-align:center;">${bill.from}</td>
+          <td style="padding:8px;text-align:center;">${bill.to}</td>
+          <td style="padding:8px;">
+            <ul style="margin:0;padding-left:1.2em;">
+              ${bill.games.map(g => `<li>${g.name} (${g.duration} min)</li>`).join("")}
+            </ul>
+          </td>
+          <td style="padding:8px;">
+            <ul style="margin:0;padding-left:1.2em;">
+              ${bill.drinks.map(d => `<li>${d.name} (${d.price} IQD)</li>`).join("")}
+            </ul>
+          </td>
+          <td style="padding:8px;text-align:center;"><b>${bill.total}</b></td>
+          <td style="padding:8px;text-align:center;">${bill.date}</td>
+          <td style="padding:8px;text-align:center;">
+            <button onclick="copyBill(${idx})" style="background:#00fff1;color:#23234a;padding:0.3rem 1rem;border-radius:7px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Copy</button>
+            <button onclick="deleteBill(${idx})" style="background:#ff6b6b;color:#fff;padding:0.3rem 1rem;border-radius:7px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;margin-left:0.5rem;">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+    // --- Copy/Export/Delete/Clear History ---
+    function copyBill(idx) {
+      const bills = JSON.parse(localStorage.getItem("atare_saman_bills") || "[]");
+      const bill = bills[idx];
+      let text = `TV ${bill.tv}\nFrom: ${bill.from} To: ${bill.to}\nGames:\n${bill.games.map(g=>`${g.name} (${g.duration} min)`).join('\n')}\nDrinks/Cakes:\n${bill.drinks.map(d=>`${d.name} (${d.price} IQD)`).join('\n')}\nTotal: ${bill.total} IQD\nDate: ${bill.date}`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Bill copied to clipboard!");
+      });
+    }
+    function deleteBill(idx) {
+      if(!confirm("Delete this bill?")) return;
+      let bills = JSON.parse(localStorage.getItem("atare_saman_bills") || "[]");
+      bills.splice(idx, 1);
+      localStorage.setItem("atare_saman_bills", JSON.stringify(bills));
+      renderHistory();
+    }
+    function clearHistory() {
+      if(!confirm("Clear ALL history? This cannot be undone.")) return;
+      localStorage.removeItem("atare_saman_bills");
+      renderHistory();
+    }
+    function exportHistory() {
+      const bills = JSON.parse(localStorage.getItem("atare_saman_bills") || "[]");
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(bills, null, 2));
+      const dlAnchor = document.createElement('a');
+      dlAnchor.setAttribute("href", dataStr);
+      dlAnchor.setAttribute("download", "atare_saman_bills_history.json");
+      document.body.appendChild(dlAnchor);
+      dlAnchor.click();
+      dlAnchor.remove();
+    }
+    // Download history as PDF report
+    function downloadHistoryPDF() {
+      // Collect bills
+      const bills = JSON.parse(localStorage.getItem("atare_saman_bills") || "[]");
+      if (!bills.length) {
+        alert("No finished sessions to export.");
+        return;
+      }
+
+      // Calculate total earned
+      let totalEarned = bills.reduce((sum, bill) => sum + (bill.total || 0), 0);
+
+      // Build PDF content as HTML
+      let html = `
+        <h2 style="color:#00fff1;font-family:'Orbitron',sans-serif;">Atare Saman - Daily Report</h2>
+        <div><b>Date:</b> ${new Date().toLocaleDateString()} <b>Time:</b> ${new Date().toLocaleTimeString()}</div>
+        <div style="margin:1em 0;font-size:1.2em;"><b>Total Earned:</b> <span style="color:#00ff99;">${totalEarned} IQD</span></div>
+        <table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;width:100%;font-size:1em;">
+          <thead style="background:#181828;color:#fff;">
+            <tr>
+              <th>TV</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Games</th>
+              <th>Drinks/Cakes</th>
+              <th>Total (IQD)</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${bills.map(bill => `
+              <tr>
+                <td>${bill.tv}</td>
+                <td>${bill.from}</td>
+                <td>${bill.to}</td>
+                <td>
+                  <ul style="margin:0;padding-left:1.2em;">
+                    ${bill.games.map(g => `<li>${g.name} (${g.duration} min)</li>`).join("")}
+                  </ul>
+                </td>
+                <td>
+                  <ul style="margin:0;padding-left:1.2em;">
+                    ${bill.drinks.map(d => `<li>${d.name} (${d.price} IQD)</li>`).join("")}
+                  </ul>
+                </td>
+                <td style="text-align:center;"><b>${bill.total}</b></td>
+                <td>${bill.date}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+        <div style="margin-top:2em;font-size:0.95em;color:#888;">Generated at: ${new Date().toLocaleString()}</div>
+      `;
+
+      // Open print dialog for PDF (browser's print-to-PDF)
+      let win = window.open('', '', 'width=900,height=700');
+      win.document.write(`
+        <html>
+          <head>
+            <title>Atare Saman - Daily Report</title>
+            <style>
+              body { font-family: 'Roboto', Arial, sans-serif; background: #fff; color: #23234a; padding: 2rem; }
+              h2 { color: #00fff1; font-family: 'Orbitron', sans-serif; }
+              table { border-collapse:collapse; width:100%; margin-top:1em; }
+              th, td { border:1px solid #181828; padding:6px; }
+              th { background:#181828; color:#fff; }
+              ul { margin:0; padding-left:1.2em; }
+            </style>
+          </head>
+            ${html}
+          </body>
+        </html>
+      `);
+      win.document.close();
+      win.focus();
+      win.print();
+    }
+    // --- History Login ---
+    function loginHistory() {
+      const pass = document.getElementById("historyPass").value;
+      if (pass === getAdminPass()) {
+        isHistoryLoggedIn = true;
+        document.getElementById("historyLoginModal").style.display = "none";
+        document.getElementById("historySection").classList.add('active');
+        renderHistory();
+      } else {
+        document.getElementById("historyLoginError").innerText = "Incorrect password!";
+      }
+    }
+    // Optional: Close modal on ESC
+    window.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") {
+        document.getElementById("historyLoginModal").style.display = "none";
+      }
+    });
+    // --- On Load: render history if needed ---
+    window.onload = function() {
+      loadTVs();
+      renderGamesGallery();
+      renderDrinksGallery();
+      // Don't auto-show history unless logged in
+      // if(document.getElementById('historySection').classList.contains('active')) renderHistory();
+    }
+    // --- Editable Games & Drinks Logic ---
+
+function getGameList() {
+  return JSON.parse(localStorage.getItem("atare_saman_games") || "null") || GAMES.slice();
+}
+function setGameList(list) {
+  localStorage.setItem("atare_saman_games", JSON.stringify(list));
+}
+function getGamePrices() {
+  return JSON.parse(localStorage.getItem("atare_saman_game_prices") || "{}");
+}
+function setGamePrices(prices) {
+  localStorage.setItem("atare_saman_game_prices", JSON.stringify(prices));
+}
+function getDrinkList() {
+  return JSON.parse(localStorage.getItem("atare_saman_drinks") || "null") || DRINKS.slice();
+}
+function setDrinkList(list) {
+  localStorage.setItem("atare_saman_drinks", JSON.stringify(list));
+}
+function getDrinkPrices() {
+  return JSON.parse(localStorage.getItem("atare_saman_drink_prices") || "{}");
+}
+function setDrinkPrices(prices) {
+  localStorage.setItem("atare_saman_drink_prices", JSON.stringify(prices));
+}
+
+// Render editable tables
+function renderEditPrices() {
+  // Games
+  const games = getGameList();
+  const gamePrices = getGamePrices();
+  document.getElementById("editGamesPrices").innerHTML = games.map((g, i) => {
+    let price = gamePrices[g.name] !== undefined ? gamePrices[g.name] : (g.type === "cod" ? 2000 : 1000);
+    let label = (g.type === "cod") ? "per hour" : "per 8 min";
+    return `
+      <tr>
+        <td>
+          <input id="gameNameEdit${i}" value="${g.name}" style="width:110px;padding:0.3rem;border-radius:6px;border:none;">
+        </td>
+        <td>
+          <select id="gameTypeEdit${i}" style="padding:0.3rem;border-radius:6px;border:none;">
+            <option value="fifa" ${g.type==="fifa"?"selected":""}>FIFA</option>
+            <option value="pes" ${g.type==="pes"?"selected":""}>PES</option>
+            <option value="cod" ${g.type==="cod"?"selected":""}>COD</option>
+          </select>
+        </td>
+        <td>
+          <input type="number" id="gamePriceInput${i}" value="${price}" min="0" style="width:90px;padding:0.3rem;border-radius:6px;border:none;">
+          <span style="font-size:0.9em;color:#888;">${label}</span>
+        </td>
+        <td>
+          <button onclick="saveGameEdit(${i})" style="background:#00fff1;color:#16213e;padding:0.2rem  1rem;border-radius:7px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Save</button>
+          <button onclick="deleteGame(${i})" style="background:#ff6b6b;color:#fff;padding:0.2rem 1rem;border-radius:7px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;margin-left:0.5rem;">Delete</button>
+        </td>
+      </tr>
+    `;
+  }).join("");
+  // Drinks
+  const drinks = getDrinkList();
+  const drinkPrices = getDrinkPrices();
+  document.getElementById("editDrinksPrices").innerHTML = drinks.map((d, i) => `
+    <tr>
+      <td>
+        <input id="drinkNameEdit${i}" value="${d.name}" style="width:110px;padding:0.3rem;border-radius:6px;border:none;">
+      </td>
+      <td>
+        <input type="number" id="drinkPriceInput${i}" value="${drinkPrices[d.name] !== undefined ? drinkPrices[d.name] : d.price}" min="0" style="width:90px;padding:0.3rem;border-radius:6px;border:none;">
+      </td>
+      <td>
+        <button onclick="saveDrinkEdit(${i})" style="background:#00fff1;color:#16213e;padding:0.2rem 1rem;border-radius:7px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;">Save</button>
+        <button onclick="deleteDrink(${i})" style="background:#ff6b6b;color:#fff;padding:0.2rem 1rem;border-radius:7px;border:none;font-family:'Orbitron',sans-serif;font-weight:bold;cursor:pointer;margin-left:0.5rem;">Delete</button>
+      </td>
+    </tr>
+  `).join("");
+}
+
+// Add new game
+function addGame() {
+  const name = document.getElementById("newGameName").value.trim();
+  const type = document.getElementById("newGameType").value;
+  const price = parseInt(document.getElementById("newGamePrice").value, 10);
+  if (!name || isNaN(price) || price < 0) {
+    alert("Please enter valid game name and price.");
+    return;
+  }
+  let games = getGameList();
+  if (games.some(g => g.name.toLowerCase() === name.toLowerCase())) {
+    alert("Game already exists!");
+    return;
+  }
+  games.push({ name, type, img: "", desc: "" });
+  setGameList(games);
+  let prices = getGamePrices();
+  prices[name] = price;
+  setGamePrices(prices);
+  document.getElementById("newGameName").value = "";
+  document.getElementById("newGamePrice").value = "";
+  renderEditPrices();
+}
+
+// Save game edit
+function saveGameEdit(idx) {
+  let games = getGameList();
+  const name = document.getElementById(`gameNameEdit${idx}`).value.trim();
+  const type = document.getElementById(`gameTypeEdit${idx}`).value;
+  const price = parseInt(document.getElementById(`gamePriceInput${idx}`).value, 10);
+  if (!name || isNaN(price) || price < 0) {
+    alert("Please enter valid game name and price.");
+    return;
+  }
+  // Update name/type
+  const oldName = games[idx].name;
+  games[idx].name = name;
+  games[idx].type = type;
+  setGameList(games);
+  // Update price
+  let prices = getGamePrices();
+  // If name changed, move price
+  if (oldName !== name) {
+    prices[name] = price;
+    delete prices[oldName];
+  } else {
+    prices[name] = price;
+  }
+  setGamePrices(prices);
+  renderEditPrices();
+}
+
+// Delete game
+function deleteGame(idx) {
+  if (!confirm("Delete this game?")) return;
+  let games = getGameList();
+  let prices = getGamePrices();
+  const name = games[idx].name;
+  games.splice(idx, 1);
+  delete prices[name];
+  setGameList(games);
+  setGamePrices(prices);
+  renderEditPrices();
+}
+
+// Add new drink
+function addDrinkItem() {
+  const name = document.getElementById("newDrinkName").value.trim();
+  const price = parseInt(document.getElementById("newDrinkPrice").value, 10);
+  if (!name || isNaN(price) || price < 0) {
+    alert("Please enter valid drink/cake name and price.");
+    return;
+  }
+  let drinks = getDrinkList();
+  if (drinks.some(d => d.name.toLowerCase() === name.toLowerCase())) {
+    alert("Drink/Cake already exists!");
+    return;
+  }
+  drinks.push({ name, price });
+  setDrinkList(drinks);
+  let prices = getDrinkPrices();
+  prices[name] = price;
+  setDrinkPrices(prices);
+  document.getElementById("newDrinkName").value = "";
+  document.getElementById("newDrinkPrice").value = "";
+  renderEditPrices();
+}
+
+// Save drink edit
+function saveDrinkEdit(idx) {
+  let drinks = getDrinkList();
+  const name = document.getElementById(`drinkNameEdit${idx}`).value.trim();
+  const price = parseInt(document.getElementById(`drinkPriceInput${idx}`).value, 10);
+  if (!name || isNaN(price) || price < 0) {
+    alert("Please enter valid drink/cake name and price.");
+    return;
+  }
+  // Update name/price
+  const oldName = drinks[idx].name;
+  drinks[idx].name = name;
+  drinks[idx].price = price;
+  setDrinkList(drinks);
+  let prices = getDrinkPrices();
+  // If name changed, move price
+  if (oldName !== name) {
+    prices[name] = price;
+    delete prices[oldName];
+  } else {
+    prices[name] = price;
+  }
+  setDrinkPrices(prices);
+  renderEditPrices();
+}
+
+// Delete drink
+function deleteDrink(idx) {
+  if (!confirm("Delete this drink/cake?")) return;
+  let drinks = getDrinkList();
+  let prices = getDrinkPrices();
+  const name = drinks[idx].name;
+  drinks.splice(idx, 1);
+  delete prices[name];
+  setDrinkList(drinks);
+  setDrinkPrices(prices);
+  renderEditPrices();
+}
+
+// --- Use editable games/drinks everywhere ---
+// Replace GAMES and DRINKS usage in renderTVs, renderGamesGallery, etc.
+function getGames() {
+  return getGameList();
+}
+function getDrinks() {
+  return getDrinkList();
+}
+
+// Update renderTVs to use getGames/getDrinks
+const origRenderTVs = renderTVs;
+renderTVs = function() {
+  loadTVs();
+  const tvsSection = document.getElementById("tvsSection");
+  tvsSection.innerHTML = "";
+  const games = getGames();
+  const drinks = getDrinks();
+  tvs.forEach((tv, idx) => {
+    const runningGame = tv.games.find(g => !g.end);
+    const card = document.createElement("div");
+    card.className = "mgmt-card";
+    card.innerHTML = `
+      <div class="tv-title">TV ${tv.id}</div>
+      <div class="mgmt-status ${runningGame ? "running" : "idle"}">
+        ${runningGame ? "🟢 Running: " + runningGame.name : "⚪ Idle"}
+      </div>
+      <div class="mgmt-actions">
+        <button onclick="resetTV(${tv.id})" title="Reset TV">Reset</button>
+        <button onclick="copyTVSummary(${tv.id})" title="Copy TV Summary">Copy</button>
+        <button onclick="showFinishModal(${tv.id})" title="Finish & Bill" style="background:#00ff99;color:#23234a;">Finish</button>
+      </div>
+      <div class="mgmt-inputs">
+        <select id="gameSelect${tv.id}">
+          ${games.map(g => `<option value="${g.name}">${g.name}</option>`).join("")}
+        </select>
+        <select id="durationSelect${tv.id}">
+          <option value="5">5 min</option>
+          <option value="8">8 min</option>
+          <option value="10">10 min</option>
+          <option value="15">15 min</option>
+          <option value="20">20 min</option>
+          <option value="25">25 min</option>
+          <option value="60">1 hour (COD only)</option>
+        </select>
+        <button onclick="startGame(${tv.id})" ${runningGame ? "disabled" : ""}>Start</button>
+        <button onclick="endGame(${tv.id})" ${!runningGame ? "disabled" : ""}>End</button>
+      </div>
+      <div class="mgmt-history">
+        <b>Games:</b>
+        ${tv.games.length === 0 ? "<div style='color:#888;'>No games yet.</div>" : tv.games.map(g =>
+          `<div>${g.name} | ${g.start} - ${g.end ? g.end : "<span style='color:#ffeb3b'>Running</span>"} | ${g.duration} min | <b>${g.price} IQD</b></div>`
+        ).join("")}
+      </div>
+      <div class="mgmt-inputs">
+        <input type="text" id="drinkName${tv.id}" placeholder="Drink/Cake name" list="drinksList${tv.id}" />
+        <datalist id="drinksList${tv.id}">
+          ${drinks.map(d => `<option value="${d.name}">`).join("")}
+        </datalist>
+        <input type="number" id="drinkPrice${tv.id}" placeholder="Price" min="0" style="width:80px;" />
+        <button onclick="addDrink(${tv.id})">Add</button>
+      </div>
+      <div class="mgmt-drinks">
+        <b>Drinks/Cakes:</b>
+        <ul class="mgmt-drinks-list">
+          ${tv.drinks.length === 0 ? "<li style='color:#888;'>No drinks/cakes yet.</li>" : tv.drinks.map((d,i) =>
+            `<li>${d.name} - ${d.price} IQD <button onclick="removeDrink(${tv.id},${i})">x</button></li>`
+          ).join("")}
+        </ul>
+      </div>
+      <div class="mgmt-total">
+        <b>Total:</b> <span>${tv.total} IQD</span>
+      </div>
+    `;
+    tvsSection.appendChild(card);
+  });
+  renderSummary();
+};
+
+// Update renderGamesGallery and renderDrinksGallery to use editable lists
+const origRenderGamesGallery = renderGamesGallery;
+renderGamesGallery = function() {
+  const gallery = document.getElementById("gamesGallery");
+  const games = getGames();
+  gallery.innerHTML = games.map(g => `
+    <div class="game-card">
+      <img src="${g.img || 'https://cdn-icons-png.flaticon.com/512/1055/1055687.png'}" alt="${g.name}">
+      <div class="game-card-title">${g.name}</div>
+      <div class="game-card-desc">${g.desc || ''}</div>
+    </div>
+  `).join("");
+};
+const origRenderDrinksGallery = renderDrinksGallery;
+renderDrinksGallery = function() {
+  const gallery = document.getElementById("drinksGallery");
+  const drinks = getDrinks();
+  gallery.innerHTML = drinks.map(d => `
+    <div class="drink-card">
+      <div class="drink-card-title">${d.name}</div>
+      <div class="drink-card-price">${d.price} IQD</div>
+    </div>
+  `).join("");
+};
+
+// Update startGame and addDrink to use editable lists/prices
+function getGamePrice(game, duration) {
+  const prices = getGamePrices();
+  if (game.type === "cod") {
+    return prices[game.name] !== undefined ? prices[game.name] : 2000;
+  }
+  // For FIFA/PES: price per 8 min
+  const per8 = prices[game.name] !== undefined ? prices[game.name] : 1000;
+  return Math.ceil(duration/8) * per8;
+}
+function getDrinkPrice(name) {
+  const prices = getDrinkPrices();
+  const found = getDrinks().find(d => d.name.toLowerCase() === name.toLowerCase());
+  return prices[name] !== undefined ? prices[name] : (found ? found.price : 0);
+}
+const origStartGame = startGame;
+startGame = function(tvId) {
+  loadTVs();
+  const tv = tvs.find(t => t.id === tvId);
+  const games = getGames();
+  const gameName = document.getElementById(`gameSelect${tv.id}`).value;
+  const duration = parseInt(document.getElementById(`durationSelect${tv.id}`).value, 10);
+  const game = games.find(g => g.name === gameName);
+  if (!game) {
+    alert("Game not found!");
+    return;
+  }
+  if ((game.type === "cod" && duration !== 60) || ((game.type === "fifa" || game.type === "pes") && (duration < 5 || duration > 25))) {
+    alert("Invalid duration for selected game!");
+    return;
+  }
+  if (tv.games.some(g => !g.end)) {
+    alert("A game is already running on this TV!");
+    return;
+  }
+  const now = new Date();
+  const start = now.getHours().toString().padStart(2,"0") + ":" + now.getMinutes().toString().padStart(2,"0");
+  let price = getGamePrice(game, duration);
+  tv.games.push({
+    name: gameName,
+    start,
+    end: null,
+    duration,
+    price
+  });
+  tv.total += price;
+  saveTVs();
+  renderTVs();
+};
+const origAddDrink = addDrink;
+addDrink = function(tvId) {
+  loadTVs();
+  const tv = tvs.find(t => t.id === tvId);
+  const drinks = getDrinks();
+  const name = document.getElementById(`drinkName${tv.id}`).value.trim();
+  let price = parseInt(document.getElementById(`drinkPrice${tv.id}`).value, 10);
+  if (!name) return;
+  if (!price || price < 0) {
+    price = getDrinkPrice(name);
+  }
+  if (price <= 0) {
+    alert("Invalid price!");
+    return;
+  }
+  tv.drinks.push({ name, price });
+  tv.total += price;
+  saveTVs();
+  renderTVs();
+};
+
+// Hide all management feature boxes
+function hideAllMgmtBoxes() {
+  document.getElementById("editPricesBox").style.display = "none";
+  document.getElementById("earningsReportBox").style.display = "none";
+  document.getElementById("changePassBox").style.display = "none";
+}
+
+// Show only the selected management box
+function showMgmtBox(boxId) {
+  hideAllMgmtBoxes();
+  document.getElementById(boxId).style.display = "block";
+  // Optionally, render content if needed
+  if (boxId === "editPricesBox") renderEditPrices();
+  if (boxId === "earningsReportBox") renderEarningsReport();
+}
+
+// When entering management section after login, show summary and buttons, but hide all feature boxes
+const origShowSection = showSection;
+showSection = function(section) {
+  origShowSection(section);
+  if (section === 'management' && isLoggedIn) {
+    document.getElementById("mgmtFeatureBtns").style.display = "flex";
+    hideAllMgmtBoxes();
+    // Optionally, show one by default:
+    // showMgmtBox('editPricesBox');
+  } else {
+    document.getElementById("mgmtFeatureBtns").style.display = "none";
+  }
+};
+  </script>
+</body>
+</html>
